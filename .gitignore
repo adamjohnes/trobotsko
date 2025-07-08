@@ -1,0 +1,15 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*.pyo
+
+# dotenv environment files
+.env
+.env.*
+
+# VSCode settings (optional)
+.vscode/
+
+# OS-specific
+.DS_Store
+Thumbs.db
