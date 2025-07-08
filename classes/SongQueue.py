@@ -1,4 +1,5 @@
 from util.error_utils import LengthEqualsZeroError
+import random
 
 class SongQueue:
   def __init__(self):
@@ -59,3 +60,10 @@ class SongQueue:
           del self.queue[i]
         except Exception as e:
           print(e)
+
+  def deleteQueue(self):
+    self.queue = []
+
+  def randomizeOrder(self):
+    random.shuffle(self.queue)
+    return (f"Order has been randomized... new queue:\n{self.queue}")

@@ -1,6 +1,13 @@
 from yt_dlp import YoutubeDL
 from classes.Song import Song
 
+async def determineMessageType(songElement):
+  if (songElement.__contains__("https://www.youtube.com/") or songElement.__contains__("https://youtu.be/")): # dealing with an youtube URL
+    submittedSong = await fetchFromYoutubeURL(songElement)
+  else:
+    submittedSong = await getURLFromTitle(songElement)
+  return submittedSong
+
 async def getURLFromTitle(title):
   with YoutubeDL({
     "quiet": True,
