@@ -4,7 +4,6 @@ import random
 class SongQueue:
   def __init__(self):
     self.queue = []
-    self.currentlyPlaying = None
   
   def __str__(self):
     if (len(self.queue) != 0):
