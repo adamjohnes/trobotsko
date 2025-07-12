@@ -1,0 +1,196 @@
+2025-07-12 17:14:06,016 INFO logging in using static token
+2025-07-12 17:14:06,810 INFO Shard ID None has connected to Gateway (Session ID: 500f4ef5baadbf9e9c17d0796c53f941).
+2025-07-12 17:14:20,939 INFO User[trobosko]: <play ariana grande positions
+2025-07-12 17:14:20,939 ERROR Error using command: None: Command "play" is not found
+2025-07-12 17:14:24,842 INFO User[trobosko]: oops
+2025-07-12 17:14:26,536 INFO User[trobosko]: i meant
+2025-07-12 17:14:30,321 INFO User[trobosko]: <song ariana grande positions
+2025-07-12 17:14:30,322 INFO Connecting to voice...
+2025-07-12 17:14:30,323 INFO Starting voice handshake... (connection attempt 1)
+2025-07-12 17:14:30,592 INFO Voice handshake complete. Endpoint found: singapore11148.discord.media
+2025-07-12 17:14:32,176 INFO Voice connection complete.
+2025-07-12 17:14:38,067 INFO Trobotsko: Song added: Title: Ariana Grande - positions (official video)
+URL: https://www.youtube.com/watch?v=tcYodQoapMg
+2025-07-12 17:14:38,254 INFO Trobotsko: Playing: Title: Ariana Grande - positions (official video)
+URL: https://www.youtube.com/watch?v=tcYodQoapMg
+2025-07-12 17:15:07,233 INFO User[trobosko]: <leave-voice
+2025-07-12 17:15:07,233 ERROR Error using command: leave-voice: Command raised an exception: AttributeError: 'MovingCog' object has no attribute 'disconnectVoice'
+2025-07-12 17:15:17,373 INFO User[trobosko]: why wont you leave???
+2025-07-12 17:15:34,223 INFO User[trobosko]: <pause
+2025-07-12 17:15:34,374 INFO Trobotsko: Pausing...
+2025-07-12 17:15:36,268 INFO User[trobosko]: <resume
+2025-07-12 17:15:36,407 INFO Trobotsko: Resuming...
+2025-07-12 17:15:40,269 INFO ffmpeg process 11148 successfully terminated with return code of 0.
+2025-07-12 17:15:46,931 INFO User[trobosko]: hello??
+2025-07-12 17:15:48,864 INFO User[trobosko]: <resume
+2025-07-12 17:15:48,983 INFO Trobotsko: No song is paused.
+2025-07-12 17:15:54,098 INFO User[trobosko]: <print
+2025-07-12 17:15:54,270 INFO Trobotsko: Details:
+Current Channel: Test 2
+Queue:
+There are no songs in the queue.
+is Connected?: True
+is Playing?: False
+VoiceClient: <discord.voice_client.VoiceClient object at 0x000001F4C0BAB0E0>
+2025-07-12 17:16:02,816 INFO User[trobosko]: <shutdown
+2025-07-12 17:16:03,379 INFO Trobotsko: Shutting down.
+2025-07-12 17:16:03,416 INFO The voice handshake is being terminated for Channel ID 1389396335974809601 (Guild ID 664928675736715294)
+2025-07-12 17:16:09,596 INFO logging in using static token
+2025-07-12 17:16:10,384 INFO Shard ID None has connected to Gateway (Session ID: fa93a6062ac3351fb54cb7c27cecb892).
+2025-07-12 17:16:40,190 INFO User[trobosko]: <shutdown
+2025-07-12 17:16:40,489 INFO Trobotsko: Shutting down.
+2025-07-12 17:20:38,754 INFO logging in using static token
+2025-07-12 17:20:39,616 INFO Shard ID None has connected to Gateway (Session ID: 93f70ad765dec2bfe42439228fa43d06).
+2025-07-12 17:20:47,573 INFO User[trobosko]: <song ARIANa positions
+2025-07-12 17:20:47,573 INFO Connecting to voice...
+2025-07-12 17:20:47,574 INFO Starting voice handshake... (connection attempt 1)
+2025-07-12 17:20:47,836 INFO Voice handshake complete. Endpoint found: singapore11148.discord.media
+2025-07-12 17:20:49,463 INFO Voice connection complete.
+2025-07-12 17:20:55,145 INFO Trobotsko: Song added: Title: Ariana Grande - positions (official video)
+URL: https://www.youtube.com/watch?v=tcYodQoapMg
+2025-07-12 17:20:55,333 INFO Trobotsko: Playing: Title: Ariana Grande - positions (official video)
+URL: https://www.youtube.com/watch?v=tcYodQoapMg
+2025-07-12 17:21:12,272 INFO User[trobosko]: <leave-voice
+2025-07-12 17:21:12,272 ERROR Error using command: leave-voice: Command raised an exception: AttributeError: 'MovingCog' object has no attribute 'Trobotsko'
+2025-07-12 17:21:57,076 INFO ffmpeg process 10692 successfully terminated with return code of 0.
+2025-07-12 17:23:21,617 INFO User[trobosko]: <shutdown
+2025-07-12 17:23:22,140 INFO Trobotsko: Shutting down.
+2025-07-12 17:23:22,189 INFO The voice handshake is being terminated for Channel ID 1389396335974809601 (Guild ID 664928675736715294)
+2025-07-12 17:23:25,396 INFO logging in using static token
+2025-07-12 17:23:26,280 INFO Shard ID None has connected to Gateway (Session ID: 43d564bbc7b79d88febc391907b4aa29).
+2025-07-12 17:23:31,596 INFO User[trobosko]: <song ariana positions
+2025-07-12 17:23:31,597 INFO Connecting to voice...
+2025-07-12 17:23:31,597 INFO Starting voice handshake... (connection attempt 1)
+2025-07-12 17:23:31,857 INFO Voice handshake complete. Endpoint found: singapore11148.discord.media
+2025-07-12 17:23:33,464 INFO Voice connection complete.
+2025-07-12 17:23:38,738 INFO Trobotsko: Song added: Title: Ariana Grande - positions (official video)
+URL: https://www.youtube.com/watch?v=tcYodQoapMg
+2025-07-12 17:23:38,923 INFO Trobotsko: Playing: Title: Ariana Grande - positions (official video)
+URL: https://www.youtube.com/watch?v=tcYodQoapMg
+2025-07-12 17:23:42,812 INFO User[trobosko]: <leave-voice
+2025-07-12 17:23:42,812 INFO The voice handshake is being terminated for Channel ID 1389396335974809601 (Guild ID 664928675736715294)
+2025-07-12 17:23:42,823 INFO ffmpeg process 28180 has not terminated. Waiting to terminate...
+2025-07-12 17:23:42,845 INFO ffmpeg process 28180 should have terminated with a return code of 1.
+2025-07-12 17:23:56,808 INFO User[trobosko]: <join-voice
+2025-07-12 17:23:56,808 INFO Connecting to voice...
+2025-07-12 17:23:56,808 INFO Starting voice handshake... (connection attempt 1)
+2025-07-12 17:23:57,084 INFO Voice handshake complete. Endpoint found: singapore11148.discord.media
+2025-07-12 17:23:58,698 INFO Voice connection complete.
+2025-07-12 17:24:13,303 INFO User[trobosko]: <print
+2025-07-12 17:24:13,541 INFO Trobotsko: Details:
+Current Channel: Test 2
+Queue:
+There are no songs in the queue.
+is Connected?: True
+is Playing?: False
+VoiceClient: <discord.voice_client.VoiceClient object at 0x000001C0EC0B4140>
+2025-07-12 17:24:35,185 INFO User[trobosko]: <song 9 rings ariana grande
+2025-07-12 17:24:35,371 INFO Trobotsko: Voice connection module not loaded.
+2025-07-12 17:26:59,934 INFO User[trobosko]: <shutdown
+2025-07-12 17:27:00,421 INFO Trobotsko: Shutting down.
+2025-07-12 17:27:00,461 INFO The voice handshake is being terminated for Channel ID 1389396335974809601 (Guild ID 664928675736715294)
+2025-07-12 17:27:03,741 INFO logging in using static token
+2025-07-12 17:27:04,618 INFO Shard ID None has connected to Gateway (Session ID: 6716093c6c691e34f67264392c581a94).
+2025-07-12 17:27:11,783 INFO User[trobosko]: <song ariana positions
+2025-07-12 17:27:11,784 INFO Connecting to voice...
+2025-07-12 17:27:11,784 INFO Starting voice handshake... (connection attempt 1)
+2025-07-12 17:27:12,075 INFO Voice handshake complete. Endpoint found: singapore11148.discord.media
+2025-07-12 17:27:13,811 INFO Voice connection complete.
+2025-07-12 17:27:19,241 INFO Trobotsko: Song added: Title: Ariana Grande - positions (official video)
+URL: https://www.youtube.com/watch?v=tcYodQoapMg
+2025-07-12 17:27:19,562 INFO Trobotsko: Playing: Title: Ariana Grande - positions (official video)
+URL: https://www.youtube.com/watch?v=tcYodQoapMg
+2025-07-12 17:27:31,509 INFO User[trobosko]: <leave-voice
+2025-07-12 17:27:31,512 INFO ffmpeg process 22768 has not terminated. Waiting to terminate...
+2025-07-12 17:27:31,539 INFO ffmpeg process 22768 should have terminated with a return code of 1.
+2025-07-12 17:27:31,633 INFO Trobotsko: There was an issue attempting to leave the channel...
+2025-07-12 17:31:28,142 INFO User[trobosko]: <shutdown
+2025-07-12 17:31:28,612 INFO Trobotsko: Shutting down.
+2025-07-12 17:31:28,641 INFO The voice handshake is being terminated for Channel ID 1389396335974809601 (Guild ID 664928675736715294)
+2025-07-12 17:31:30,667 INFO logging in using static token
+2025-07-12 17:31:31,488 INFO Shard ID None has connected to Gateway (Session ID: dcb99657c52f21b0985b66f5f33d3e74).
+2025-07-12 17:31:36,794 INFO User[trobosko]: <song ariana grande positions
+2025-07-12 17:31:36,795 INFO Connecting to voice...
+2025-07-12 17:31:36,795 INFO Starting voice handshake... (connection attempt 1)
+2025-07-12 17:31:37,051 INFO Voice handshake complete. Endpoint found: singapore11148.discord.media
+2025-07-12 17:31:38,658 INFO Voice connection complete.
+2025-07-12 17:31:44,286 INFO Trobotsko: Song added: Title: Ariana Grande - positions (official video)
+URL: https://www.youtube.com/watch?v=tcYodQoapMg
+2025-07-12 17:31:44,503 INFO Trobotsko: Playing: Title: Ariana Grande - positions (official video)
+URL: https://www.youtube.com/watch?v=tcYodQoapMg
+2025-07-12 17:31:46,542 INFO User[trobosko]: <leave-voice
+2025-07-12 17:31:46,542 INFO The voice handshake is being terminated for Channel ID 1389396335974809601 (Guild ID 664928675736715294)
+2025-07-12 17:31:46,550 INFO ffmpeg process 24848 has not terminated. Waiting to terminate...
+2025-07-12 17:31:46,575 INFO ffmpeg process 24848 should have terminated with a return code of 1.
+2025-07-12 17:31:50,461 INFO User[trobosko]: <join-voice
+2025-07-12 17:31:50,462 INFO Connecting to voice...
+2025-07-12 17:31:50,462 INFO Starting voice handshake... (connection attempt 1)
+2025-07-12 17:31:50,738 INFO Voice handshake complete. Endpoint found: singapore11148.discord.media
+2025-07-12 17:31:52,353 INFO Voice connection complete.
+2025-07-12 17:32:00,038 INFO User[trobosko]: <song ariana grande 9 rings
+2025-07-12 17:32:00,207 INFO Trobotsko: Voice connection module not loaded.
+2025-07-12 17:34:08,542 INFO User[trobosko]: <shutdown
+2025-07-12 17:34:09,060 INFO Trobotsko: Shutting down.
+2025-07-12 17:34:09,101 INFO The voice handshake is being terminated for Channel ID 1389396335974809601 (Guild ID 664928675736715294)
+2025-07-12 17:34:10,794 INFO logging in using static token
+2025-07-12 17:34:11,742 INFO Shard ID None has connected to Gateway (Session ID: e38cd6edc5ec8025dc3d84776db7a09e).
+2025-07-12 17:34:16,357 INFO User[trobosko]: <song ariana grande 0 rings
+2025-07-12 17:34:16,357 INFO Connecting to voice...
+2025-07-12 17:34:16,357 INFO Starting voice handshake... (connection attempt 1)
+2025-07-12 17:34:16,626 INFO Voice handshake complete. Endpoint found: singapore11148.discord.media
+2025-07-12 17:34:18,072 INFO Voice connection complete.
+2025-07-12 17:34:23,931 INFO Trobotsko: Song added: Title: Ariana Grande - 7 rings (Official Video)
+URL: https://www.youtube.com/watch?v=QYh6mYIJG2Y
+2025-07-12 17:34:24,076 INFO Trobotsko: Playing: Title: Ariana Grande - 7 rings (Official Video)
+URL: https://www.youtube.com/watch?v=QYh6mYIJG2Y
+2025-07-12 17:34:27,411 INFO User[trobosko]: <leave-voice
+2025-07-12 17:34:27,411 INFO The voice handshake is being terminated for Channel ID 1389396335974809601 (Guild ID 664928675736715294)
+2025-07-12 17:34:27,424 INFO ffmpeg process 13888 has not terminated. Waiting to terminate...
+2025-07-12 17:34:27,442 INFO ffmpeg process 13888 should have terminated with a return code of 1.
+2025-07-12 17:34:31,709 INFO User[trobosko]: <join-voice
+2025-07-12 17:34:31,709 INFO Connecting to voice...
+2025-07-12 17:34:31,711 INFO Starting voice handshake... (connection attempt 1)
+2025-07-12 17:34:31,985 INFO Voice handshake complete. Endpoint found: singapore11148.discord.media
+2025-07-12 17:34:33,568 INFO Voice connection complete.
+2025-07-12 17:34:36,509 INFO User[trobosko]: <ariana grande nasty
+2025-07-12 17:34:36,509 ERROR Error using command: None: Command "ariana" is not found
+2025-07-12 17:34:40,453 INFO User[trobosko]: <song ariana grande nasty
+2025-07-12 17:34:45,605 INFO Trobotsko: Song added: Title: Ariana Grande - nasty (official audio)
+URL: https://www.youtube.com/watch?v=A3BuLzTvo0o
+2025-07-12 17:34:45,794 INFO Trobotsko: Playing: Title: Ariana Grande - nasty (official audio)
+URL: https://www.youtube.com/watch?v=A3BuLzTvo0o
+2025-07-12 17:34:53,369 INFO User[trobosko]: <skip
+2025-07-12 17:34:53,382 INFO ffmpeg process 10372 has not terminated. Waiting to terminate...
+2025-07-12 17:34:53,404 INFO ffmpeg process 10372 should have terminated with a return code of 1.
+2025-07-12 17:34:53,526 INFO Trobotsko: New Queue: 
+There are no songs in the queue.
+2025-07-12 17:35:00,969 INFO User[trobosko]: <song ariana grande just like magic
+2025-07-12 17:35:06,205 INFO Trobotsko: Song added: Title: Ariana Grande - just like magic (official audio)
+URL: https://www.youtube.com/watch?v=zMEzD2G2IKA
+2025-07-12 17:35:06,480 INFO Trobotsko: Playing: Title: Ariana Grande - just like magic (official audio)
+URL: https://www.youtube.com/watch?v=zMEzD2G2IKA
+2025-07-12 17:35:10,349 INFO User[trobosko]: <pause
+2025-07-12 17:35:10,566 INFO Trobotsko: Pausing...
+2025-07-12 17:35:13,983 INFO User[trobosko]: <leave-voice
+2025-07-12 17:35:13,983 INFO The voice handshake is being terminated for Channel ID 1389396335974809601 (Guild ID 664928675736715294)
+2025-07-12 17:35:13,984 INFO ffmpeg process 29208 has not terminated. Waiting to terminate...
+2025-07-12 17:35:14,004 INFO ffmpeg process 29208 should have terminated with a return code of 1.
+2025-07-12 17:35:17,928 INFO User[trobosko]: <pause
+2025-07-12 17:35:17,928 ERROR Error using command: pause: Command raised an exception: AttributeError: 'NoneType' object has no attribute 'is_paused'
+2025-07-12 17:35:23,079 INFO User[trobosko]: <resume
+2025-07-12 17:35:23,081 ERROR Error using command: resume: Command raised an exception: AttributeError: 'NoneType' object has no attribute 'is_paused'
+2025-07-12 17:35:39,711 INFO User[trobosko]: <song ariana grande break up with your girlfriend
+2025-07-12 17:35:39,712 INFO Connecting to voice...
+2025-07-12 17:35:39,712 INFO Starting voice handshake... (connection attempt 1)
+2025-07-12 17:35:39,984 INFO Voice handshake complete. Endpoint found: singapore11148.discord.media
+2025-07-12 17:35:41,455 INFO Voice connection complete.
+2025-07-12 17:35:46,514 INFO Trobotsko: Song added: Title: Ariana Grande - break up with your girlfriend, i'm bored (Official Video)
+URL: https://www.youtube.com/watch?v=LH4Y1ZUUx2g
+2025-07-12 17:35:46,739 INFO Trobotsko: Playing: Title: Ariana Grande - break up with your girlfriend, i'm bored (Official Video)
+URL: https://www.youtube.com/watch?v=LH4Y1ZUUx2g
+2025-07-12 17:35:57,781 INFO User[trobosko]: brilliant. I think we're done here.
+2025-07-12 17:37:42,051 INFO User[trobosko]: <shutdown
+2025-07-12 17:37:42,477 INFO Trobotsko: Shutting down.
+2025-07-12 17:37:42,520 INFO The voice handshake is being terminated for Channel ID 1389396335974809601 (Guild ID 664928675736715294)
+2025-07-12 17:37:42,534 INFO ffmpeg process 30228 has not terminated. Waiting to terminate...
+2025-07-12 17:37:42,554 INFO ffmpeg process 30228 should have terminated with a return code of 1.
