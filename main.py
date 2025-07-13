@@ -5,8 +5,7 @@ import os
 from classes.BotAPI import BotAPI
 import logging
 from datetime import date
-
-logs_directory = "C:\\Users\\owner\\Documents\\vsc\\misc\\python\\trobotsko\\logs\\"
+from logs.directory import logs_directory
 
 logging.basicConfig(
   filename=f"{logs_directory}trobotsko_logs_{str(date.today())}.log",
