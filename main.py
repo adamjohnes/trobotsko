@@ -5,7 +5,6 @@ import os
 from classes.BotAPI import BotAPI
 import logging
 from datetime import date
-from logs.directory import logs_directory
 from util.db import create_pool, get_conn, ensure_user
 import asyncio
 
