@@ -10,10 +10,12 @@ def create_pool():
     pool_name     = "bot_pool",
     pool_size     = 5,                 # tweak for your load
     pool_reset_session = True,
-    host          = "localhost",
+    host          = os.getenv("DB_HOST"),
+    port          = 3306,
     user          = os.getenv("DB_USER"),
     password      = os.getenv("DB_PASS"),
     database      = os.getenv("DB_NAME"),
+    use_pure      = True
   )
 
 def get_conn(pool):

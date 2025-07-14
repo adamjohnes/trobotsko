@@ -9,8 +9,10 @@ from logs.directory import logs_directory
 from util.db import create_pool, get_conn, ensure_user
 import asyncio
 
+load_dotenv()
+
 logging.basicConfig(
-  filename=f"{logs_directory}trobotsko_logs_{str(date.today())}.log",
+  filename=f"{os.getenv("LOGS_LOCATION")}trobotsko_logs_{str(date.today())}.log",
   level=logging.INFO,
   format="%(asctime)s %(levelname)s %(message)s",
   encoding="utf-8"
@@ -72,7 +74,6 @@ async def on_message(message):
 async def on_command_error(ctx, error):
   logging.error(f"Error using command: {ctx.command}: {error}")
 
-load_dotenv()
 TOKEN = os.getenv("DISCORD_TOKEN")
 
 if __name__ == "__main__":
