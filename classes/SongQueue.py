@@ -81,27 +81,41 @@ class SongQueue:
     
     try:
       while True:
-        vc = bot.Trobotsko.VoiceClient
-        if vc is None:         # disconnected
-            break
+        if bot.Trobotsko.VoiceClient is None:         # disconnected
+          break
+
+        # If audio is repeating, don't act in here
+        if bot.Trobotsko.isRepeating:
+          await asyncio.sleep(0.5)
+          continue
 
         # If audio is still playing or paused, just wait
-        if vc.is_playing() or vc.is_paused():
-            await asyncio.sleep(0.5)
-            continue
+        if bot.Trobotsko.VoiceClient.is_playing() or bot.Trobotsko.VoiceClient.is_paused():
+          await asyncio.sleep(0.5)
+          continue
 
         # Now it’s safe to quit if *nothing* is left
         if bot.Trobotsko.songList.getSize() == 0:
-            break
+          break
 
         # Otherwise, start the next track…
         self.current = bot.Trobotsko.songList.peek()
         bot.Trobotsko.songList.popSong()
         await ctx.send(f"Playing: {self.current}")
         source = discord.FFmpegPCMAudio(self.current.playableAudio, options='-vn')
-        vc.play(source)
+        bot.Trobotsko.VoiceClient.play(source)
+        self.isPlayingLoopActive = True
     finally:
       self.isPlayingLoopActive = False 
+      
+  async def repeatSong(self, bot, ctx):
+    bot.Trobotsko.isRepeating = not bot.Trobotsko.isRepeating
+    while (bot.Trobotsko.isRepeating):
+      if bot.Trobotsko.VoiceClient.is_playing() or bot.Trobotsko.VoiceClient.is_paused():
+        await asyncio.sleep(0.5)
+      else:
+        source = discord.FFmpegPCMAudio(self.current.playableAudio, options='-vn')
+        bot.Trobotsko.VoiceClient.play(source)
       
   async def pauseSong(self, bot, ctx):
     if (bot.Trobotsko.VoiceClient.is_paused() == False and bot.Trobotsko.VoiceClient.is_playing()):

@@ -4,9 +4,10 @@ from classes.SongQueue import SongQueue
 
 class BotAPI:
   def __init__(self):
-    self.currentChannel = None
     self.songList=SongQueue()
+    self.currentChannel = None
     self.isConnected = False
+    self.isRepeating = False
     self.VoiceClient = None 
    
   def __str__(self):
@@ -21,9 +22,10 @@ class BotAPI:
   def setVoiceClient(self, voiceClient:discord.VoiceClient):
     self.VoiceClient = voiceClient
   
-  def setBotAttributes(self, channel, isConnected, VoiceClient):
+  def setBotAttributes(self, channel:str, isConnected:bool, isRepeating:bool, VoiceClient:discord.VoiceClient):
     self.currentChannel = channel
     self.isConnected = isConnected
+    self.isRepeating = isRepeating
     self.VoiceClient = VoiceClient
     
   # async def getSongs(self):

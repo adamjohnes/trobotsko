@@ -2,7 +2,7 @@ import discord
 from discord.ext import commands
 import asyncio
 
-class MovingCog(commands.Cog):
+class Moving(commands.Cog):
   def __init__(self, bot):
     self.bot = bot
 
@@ -38,12 +38,12 @@ async def connectVoice(bot, ctx):
     await ctx.send(f"Joining... {channel}")
     try:
       await ctx.voice_client.disconnect()
-      bot.Trobotsko.setBotAttributes(channel, False, None)
+      bot.Trobotsko.setBotAttributes(channel, False, False, None)
     except:
       await ctx.send("There was an issue attempting to leave the channel...")
       
   try: 
-    bot.Trobotsko.setBotAttributes(channel, True, await channel.connect(reconnect=False))
+    bot.Trobotsko.setBotAttributes(channel, True, bot.Trobotsko.isRepeating, await channel.connect(reconnect=False))
   except discord.GatewayNotFound as e:
     await ctx.send(f"GatewayNotFound: {e}")
   except discord.ConnectionClosed as e:
@@ -52,7 +52,7 @@ async def connectVoice(bot, ctx):
     await ctx.send(f"ClientException: {e}")
           
   if (bot.Trobotsko.VoiceClient is None):
-    bot.Trobotsko.setBotAttributes(None, False, None)
+    bot.Trobotsko.setBotAttributes(None, False, False, None)
     
 async def disconnectVoice(bot, ctx):
   if not bot.Trobotsko.isConnected: # User is not connected to voice
@@ -63,9 +63,9 @@ async def disconnectVoice(bot, ctx):
         bot.Trobotsko.VoiceClient.stop()
         
       await ctx.voice_client.disconnect()
-      bot.Trobotsko.setBotAttributes(None, False, None)
+      bot.Trobotsko.setBotAttributes(None, False, False, None)
     except:
       await ctx.send("There was an issue attempting to leave the channel...")
 
 async def setup(bot):
-  await bot.add_cog(MovingCog(bot))
+  await bot.add_cog(Moving(bot))

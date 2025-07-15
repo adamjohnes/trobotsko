@@ -5,11 +5,11 @@ from cogs.moving import connectVoice
 
 songs = ["https://www.youtube.com/watch?v=xKCek6_dB0M", "https://www.youtube.com/watch?v=a81eP2E8MEQ", "https://www.youtube.com/watch?v=_ILsdcs__ME", "Right above it", "the duck song", "Ariana Grande positions"]
 
-class SongCog(commands.Cog):
+class Song(commands.Cog):
   def __init__(self, bot):
     self.bot = bot
 
-  @commands.command(name="song", help="submit a song to the queue\nFormat: <song [Youtube URL] or <song [song title] --i.e. <song youtube.com/example")
+  @commands.command(name="play", help="submits a song to the queue, also plays song if none is playing -> Format: <play [Youtube URL] or <song [song title] --i.e. <song youtube.com/example")
   async def submitSong(self, ctx, *, songElement: str):
     # if (self.bot.Trobotsko.VoiceClient == None):
     #   await ctx.send("I need to join a voice channel first, use <join-voice")
@@ -48,6 +48,8 @@ class SongCog(commands.Cog):
       return
     if (self.bot.Trobotsko.VoiceClient.is_paused()):
       await self.bot.Trobotsko.songList.resumeSong(self.bot, ctx)
+    if (self.bot.Trobotsko.isRepeating):
+      self.bot.Trobotsko.isRepeating = False
     self.bot.Trobotsko.VoiceClient.stop()
     self.bot.Trobotsko.songList.current = None
     await ctx.send(f"New Queue: \n{self.bot.Trobotsko.songList}")
@@ -72,5 +74,10 @@ class SongCog(commands.Cog):
     if (self.bot.Trobotsko.songList.getSize() > 0):
       await ctx.send(self.bot.Trobotsko.songList.randomizeOrder())
 
+  @commands.command(name="repeat", help="toggles the song on/off repeat")
+  async def repeatSong(self, ctx):
+    await self.bot.Trobotsko.songList.repeatSong(self.bot, ctx)
+    await ctx.send(f"Repeating... {self.bot.Trobotsko.songList.current}")
+
 async def setup(bot):
-  await bot.add_cog(SongCog(bot))
+  await bot.add_cog(Song(bot))
