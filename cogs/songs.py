@@ -9,7 +9,7 @@ class Song(commands.Cog):
   def __init__(self, bot):
     self.bot = bot
 
-  @commands.command(name="play", help="submits a song to the queue, also plays song if none is playing -> Format: <play [Youtube URL] or <song [song title] --i.e. <song youtube.com/example")
+  @commands.command(name="play", help="submits a song to the queue, also plays song if none is playing")
   async def submitSong(self, ctx, *, songElement: str):
     # if (self.bot.Trobotsko.VoiceClient == None):
     #   await ctx.send("I need to join a voice channel first, use <join-voice")
@@ -52,7 +52,6 @@ class Song(commands.Cog):
       self.bot.Trobotsko.isRepeating = False
     self.bot.Trobotsko.VoiceClient.stop()
     self.bot.Trobotsko.songList.current = None
-    await ctx.send(f"New Queue: \n{self.bot.Trobotsko.songList}")
   
   @commands.command(name="see", help="see a list of the songs in the queue")
   async def userSeeSongs(self, ctx):
@@ -61,7 +60,7 @@ class Song(commands.Cog):
   @commands.command(name="remove", help="remove a song in the queue\nFormat: <remove [Youtube URL] OR <remove [song title] OR <remove [position]")
   async def removeSong(self, ctx, songElement):
     try:
-      self.bot.Trobotsko.songList.removeSong(ctx, songElement)
+      await self.bot.Trobotsko.songList.removeSong(ctx, songElement)
     except Exception as e:
       print(e)
 
@@ -69,7 +68,7 @@ class Song(commands.Cog):
   async def clearQueue(self, ctx):
     self.bot.Trobotsko.songList.deleteQueue()
 
-  @commands.command(name="reorder", help="randomizes the order of the songs in the queue")
+  @commands.command(name="reorder", help="one-time randomizes the order of the songs in the queue")
   async def randomizeSongs(self, ctx):
     if (self.bot.Trobotsko.songList.getSize() > 0):
       await ctx.send(self.bot.Trobotsko.songList.randomizeOrder())
@@ -77,6 +76,10 @@ class Song(commands.Cog):
   @commands.command(name="repeat", help="toggles the song on/off repeat")
   async def repeatSong(self, ctx):
     await self.bot.Trobotsko.songList.repeatSong(self.bot, ctx)
+    
+  @commands.command(name="shuffle", help="puts the queue on shuffle mode")
+  async def shuffleSongs(self, ctx):
+    await self.bot.Trobotsko.songList.shuffleSongs(self.bot, ctx)
 
 async def setup(bot):
   await bot.add_cog(Song(bot))

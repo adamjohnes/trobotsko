@@ -31,22 +31,22 @@ class SongQueue:
   def popSong(self):
     self.queue.pop(0)
     
-  def removeSong(self, ctx, songElement):
+  async def removeSong(self, ctx, songElement):
     # pause song or stop playing if current playing song
     if (songElement.__contains__("https://www.youtube.com/") or songElement.__contains__("https://youtu.be/")): # dealing with an youtube URL
-      self.removeByURL(ctx, songElement)
+      await self.removeByURL(ctx, songElement)
     elif (songElement.isdigit()):
       if (int(songElement) >= 0): 
-        self.removeByPosition(ctx, songElement)
+        await self.removeByPosition(ctx, songElement)
     else:
-      self.removeByTitle(ctx, songElement)
+      await self.removeByTitle(ctx, songElement)
   
   async def removeByURL(self, ctx, url):
     for i, song in enumerate(self.queue):
-      if song.url.lower() == url.lower():
+      if song.url.lower().__contains__(url.lower()):
         try:
-          del self.queue[i]
           await ctx.send(f"Removing... {self.queue[i]}")
+          del self.queue[i]
         except Exception as e:
           print(e)
     
@@ -54,17 +54,17 @@ class SongQueue:
     for i, song in enumerate(self.queue):
       if (str(i) == str(position)):
         try:
-          del self.queue[i]
           await ctx.send(f"Removing... {self.queue[i]}")
+          del self.queue[i]
         except Exception as e:
           print(e)
     
   async def removeByTitle(self, ctx, songTitle):
     for i, song in enumerate(self.queue):
-      if song.title.lower() == songTitle.lower():
+      if song.title.lower().__contains__(songTitle.lower()):
         try:
-          del self.queue[i]
           await ctx.send(f"Removing... {self.queue[i]}")
+          del self.queue[i]
         except Exception as e:
           print(e)
 
@@ -99,8 +99,13 @@ class SongQueue:
           break
 
         # Otherwise, start the next track…
-        self.current = bot.Trobotsko.songList.peek()
-        bot.Trobotsko.songList.popSong()
+        if bot.Trobotsko.isShuffling:
+          randomNumber = random.randint(0, len(bot.Trobotsko.songList.queue) - 1)
+          self.current = bot.Trobotsko.songList.queue[randomNumber]
+          bot.Trobotsko.songList.queue.pop(randomNumber)
+        else:
+          self.current = bot.Trobotsko.songList.peek()
+          bot.Trobotsko.songList.popSong()
         await ctx.send(f"Playing: {self.current}")
         source = discord.FFmpegPCMAudio(self.current.playableAudio, options='-vn')
         bot.Trobotsko.VoiceClient.play(source)
@@ -110,13 +115,19 @@ class SongQueue:
       
   async def repeatSong(self, bot, ctx):
     bot.Trobotsko.isRepeating = not bot.Trobotsko.isRepeating
-    await ctx.send(f"Repeating song... {bot.Trobotsko.songList.current}")
+    if (bot.Trobotsko.isRepeating):
+      await ctx.send(f"Repeating song... {bot.Trobotsko.songList.current}")
+    else:
+      await ctx.send(f"Repeat turned off.")
     while (bot.Trobotsko.isRepeating):
       if bot.Trobotsko.VoiceClient.is_playing() or bot.Trobotsko.VoiceClient.is_paused():
         await asyncio.sleep(0.5)
       else:
-        source = discord.FFmpegPCMAudio(self.current.playableAudio, options='-vn')
-        bot.Trobotsko.VoiceClient.play(source)
+        try:
+          source = discord.FFmpegPCMAudio(self.current.playableAudio, options='-vn')
+          bot.Trobotsko.VoiceClient.play(source)
+        except Exception as e:
+          print(e)
       
   async def pauseSong(self, bot, ctx):
     if (bot.Trobotsko.VoiceClient.is_paused() == False and bot.Trobotsko.VoiceClient.is_playing()):
@@ -141,3 +152,10 @@ class SongQueue:
         await ctx.send(f"Bot has no song to resume.")
     else:
       await ctx.send(f"No song is paused.") 
+      
+  async def shuffleSongs(self, bot, ctx):
+    bot.Trobotsko.isShuffling = not bot.Trobotsko.isShuffling
+    if (bot.Trobotsko.isShuffling):
+      await ctx.send(f"Shuffling queue...")
+    else:
+      await ctx.send(f"Turning off shuffling...")

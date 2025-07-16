@@ -8,6 +8,7 @@ class BotAPI:
     self.currentChannel = None
     self.isConnected = False
     self.isRepeating = False
+    self.isShuffling = False
     self.VoiceClient = None 
    
   def __str__(self):
@@ -27,9 +28,4 @@ class BotAPI:
     self.isConnected = isConnected
     self.isRepeating = isRepeating
     self.VoiceClient = VoiceClient
-    
-  # async def getSongs(self):
-  #   stringBuilder : str = ''
-  #   for song in self.songList:
-  #     stringBuilder+=f"{song}\n"
-  #   return stringBuilder
+    self.isShuffling = False

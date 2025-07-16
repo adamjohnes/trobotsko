@@ -36,4 +36,4 @@ async def fetchFromYoutubeURL(url):
   except Exception as e:
     print("Error extracting title:", e)
     return
-  return Song(video_info.get("title", "Unknown Title"), url, video_info["url"])
+  return Song(video_info.get("title", "Unknown Title"), f"<{url}>", video_info["url"])

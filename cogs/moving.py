@@ -6,11 +6,11 @@ class Moving(commands.Cog):
   def __init__(self, bot):
     self.bot = bot
 
-  @commands.command(name="join-voice", help="Joins the voice channel")
+  @commands.command(name="join-voice", help="joins the voice channel")
   async def join_voice(self, ctx):   
     await connectVoice(self.bot, ctx)
             
-  @commands.command(name = "leave-voice", help = "Leaves the voice channel")
+  @commands.command(name = "leave-voice", help = "leaves the voice channel")
   async def leave_voice(self, ctx):
     await disconnectVoice(self.bot, ctx)
 
