@@ -77,7 +77,6 @@ class Song(commands.Cog):
   @commands.command(name="repeat", help="toggles the song on/off repeat")
   async def repeatSong(self, ctx):
     await self.bot.Trobotsko.songList.repeatSong(self.bot, ctx)
-    await ctx.send(f"Repeating... {self.bot.Trobotsko.songList.current}")
 
 async def setup(bot):
   await bot.add_cog(Song(bot))

@@ -110,6 +110,7 @@ class SongQueue:
       
   async def repeatSong(self, bot, ctx):
     bot.Trobotsko.isRepeating = not bot.Trobotsko.isRepeating
+    await ctx.send(f"Repeating song... {bot.Trobotsko.songList.current}")
     while (bot.Trobotsko.isRepeating):
       if bot.Trobotsko.VoiceClient.is_playing() or bot.Trobotsko.VoiceClient.is_paused():
         await asyncio.sleep(0.5)
