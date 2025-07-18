@@ -24,7 +24,7 @@ class MyBot(commands.Bot):
 
     async def setup_hook(self):
         self.Trobotsko = BotAPI()
-        for ext in ["cogs.songs", "cogs.moving", "cogs.runescape"]:
+        for ext in ["cogs.songs", "cogs.moving", "cogs.runescape", "cogs.playlists"]:
             try:
                 await self.load_extension(ext)
                 print(f"Loaded extension: {ext}")

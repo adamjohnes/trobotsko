@@ -49,3 +49,16 @@ def update_rsn(pool, user, rsn):
       (rsn, user.id)
     )
     conn.commit()
+    
+def create_playlist_db(pool, user, playlist):
+  with pool.get_connection() as conn:
+    print(f"[DB] Creating playlist for {user.id} → {playlist}")
+    cur = conn.cursor()
+    cur.execute(
+      """
+      INSERT IGNORE INTO playlists (user_id, name, created_at, user)
+      VALUES (%s, %s, %s, %s)
+      """,
+      (user.id, playlist, datetime.now(), user.name)
+    )
+    conn.commit()

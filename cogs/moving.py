@@ -8,11 +8,11 @@ class Moving(commands.Cog):
 
   @commands.command(name="join-voice", help="joins the voice channel")
   async def join_voice(self, ctx):   
-    await connectVoice(self.bot, ctx)
+    await connect_voice(self.bot, ctx)
             
   @commands.command(name = "leave-voice", help = "leaves the voice channel")
   async def leave_voice(self, ctx):
-    await disconnectVoice(self.bot, ctx)
+    await disconnect_voice(self.bot, ctx)
 
   @commands.command(name = "print", help = "print bot attributes")
   async def print(self, ctx):
@@ -24,10 +24,10 @@ class Moving(commands.Cog):
       self.bot.Trobotsko.currentChannel = after.channel # any movement between channels, we update the bots current channel
       
 
-async def connectVoice(bot, ctx):
+async def connect_voice(bot, ctx):
   if not ctx.author.voice: # User is not connected to a voice channel
     await ctx.send(f"{ctx.author} is not connected to a voice channel.")
-    return
+    return -1
 
   channel = ctx.author.voice.channel # We only reach here if a user is connected to a voice channel
 
@@ -38,12 +38,12 @@ async def connectVoice(bot, ctx):
     await ctx.send(f"Joining... {channel}")
     try:
       await ctx.voice_client.disconnect()
-      bot.Trobotsko.setBotAttributes(channel, False, False, None)
+      bot.Trobotsko.set_bot_attributes(channel, False, False, None)
     except:
       await ctx.send("There was an issue attempting to leave the channel...")
       
   try: 
-    bot.Trobotsko.setBotAttributes(channel, True, bot.Trobotsko.isRepeating, await channel.connect(reconnect=False))
+    bot.Trobotsko.set_bot_attributes(channel, True, bot.Trobotsko.isRepeating, await channel.connect(reconnect=False))
   except discord.GatewayNotFound as e:
     await ctx.send(f"GatewayNotFound: {e}")
   except discord.ConnectionClosed as e:
@@ -52,9 +52,9 @@ async def connectVoice(bot, ctx):
     await ctx.send(f"ClientException: {e}")
           
   if (bot.Trobotsko.VoiceClient is None):
-    bot.Trobotsko.setBotAttributes(None, False, False, None)
+    bot.Trobotsko.set_bot_attributes(None, False, False, None)
     
-async def disconnectVoice(bot, ctx):
+async def disconnect_voice(bot, ctx):
   if not bot.Trobotsko.isConnected: # User is not connected to voice
     await ctx.send(f"{bot.user} is not connected to a voice channel.") 
   elif ctx.voice_client is not None: 
@@ -63,7 +63,7 @@ async def disconnectVoice(bot, ctx):
         bot.Trobotsko.VoiceClient.stop()
         
       await ctx.voice_client.disconnect()
-      bot.Trobotsko.setBotAttributes(None, False, False, None)
+      bot.Trobotsko.set_bot_attributes(None, False, False, None)
     except:
       await ctx.send("There was an issue attempting to leave the channel...")
 

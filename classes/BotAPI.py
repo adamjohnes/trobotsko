@@ -14,16 +14,16 @@ class BotAPI:
   def __str__(self):
     return f"Details:\nCurrent Channel: {self.currentChannel}\nQueue:\n{self.songList}\nis Connected?: {self.isConnected}\nis Playing?: {self.VoiceClient.is_playing()}\nVoiceClient: {self.VoiceClient}"
   
-  def setChannel(self, channel:str):
+  def set_channel(self, channel:str):
     self.channel = channel
     
-  def setIsConnected(self, isConnected:bool):
+  def set_is_connected(self, isConnected:bool):
     self.isConnected = isConnected
   
-  def setVoiceClient(self, voiceClient:discord.VoiceClient):
+  def set_voice_client(self, voiceClient:discord.VoiceClient):
     self.VoiceClient = voiceClient
   
-  def setBotAttributes(self, channel:str, isConnected:bool, isRepeating:bool, VoiceClient:discord.VoiceClient):
+  def set_bot_attributes(self, channel:str, isConnected:bool, isRepeating:bool, VoiceClient:discord.VoiceClient):
     self.currentChannel = channel
     self.isConnected = isConnected
     self.isRepeating = isRepeating

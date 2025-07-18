@@ -16,7 +16,7 @@ class SongQueue:
     else:
       return "There are no songs in the queue."
   
-  def getSize(self):
+  def get_size(self):
     return len(self.queue)
   
   def peek(self):
@@ -25,23 +25,23 @@ class SongQueue:
     else:
       raise LengthEqualsZeroError("The length of the queue is 0.")
   
-  def pushSong(self, song):
+  def push_song(self, song):
     self.queue.append(song)
     
-  def popSong(self):
+  def pop_song(self):
     self.queue.pop(0)
     
-  async def removeSong(self, ctx, songElement):
+  async def remove_song(self, ctx, songElement):
     # pause song or stop playing if current playing song
     if (songElement.__contains__("https://www.youtube.com/") or songElement.__contains__("https://youtu.be/")): # dealing with an youtube URL
-      await self.removeByURL(ctx, songElement)
+      await self.remove_by_URL(ctx, songElement)
     elif (songElement.isdigit()):
       if (int(songElement) >= 0): 
-        await self.removeByPosition(ctx, songElement)
+        await self.remove_by_position(ctx, songElement)
     else:
-      await self.removeByTitle(ctx, songElement)
+      await self.remove_by_title(ctx, songElement)
   
-  async def removeByURL(self, ctx, url):
+  async def remove_by_URL(self, ctx, url):
     for i, song in enumerate(self.queue):
       if song.url.lower().__contains__(url.lower()):
         try:
@@ -50,16 +50,15 @@ class SongQueue:
         except Exception as e:
           print(e)
     
-  async def removeByPosition(self, ctx, position):
-    for i, song in enumerate(self.queue):
-      if (str(i) == str(position)):
-        try:
-          await ctx.send(f"Removing... {self.queue[i]}")
-          del self.queue[i]
-        except Exception as e:
-          print(e)
+  async def remove_by_position(self, ctx, position):
+    try:
+      await ctx.send(f"Removing... {self.queue[int(position)]}")
+      del self.queue[int(position)]
+    except Exception as e:
+      print(e)
+      await ctx.send(f"A song with position: [{position}] doesn't exist.")
     
-  async def removeByTitle(self, ctx, songTitle):
+  async def remove_by_title(self, ctx, songTitle):
     for i, song in enumerate(self.queue):
       if song.title.lower().__contains__(songTitle.lower()):
         try:
@@ -67,15 +66,16 @@ class SongQueue:
           del self.queue[i]
         except Exception as e:
           print(e)
+          await ctx.send(f"A song with the title: [{songTitle}] doesn't exist.")
 
-  def deleteQueue(self):
+  def delete_queue(self):
     self.queue = []
 
-  def randomizeOrder(self):
+  def randomize_order(self):
     random.shuffle(self.queue)
     return (f"Order has been randomized... new queue:\n{self.queue}")
   
-  async def playSongs(self, bot, ctx):
+  async def play_songs(self, bot, ctx):
     if (self.isPlayingLoopActive):
       return
     
@@ -113,7 +113,7 @@ class SongQueue:
     finally:
       self.isPlayingLoopActive = False 
       
-  async def repeatSong(self, bot, ctx):
+  async def repeat_song(self, bot, ctx):
     bot.Trobotsko.isRepeating = not bot.Trobotsko.isRepeating
     if (bot.Trobotsko.isRepeating):
       await ctx.send(f"Repeating song... {bot.Trobotsko.songList.current}")
@@ -129,7 +129,7 @@ class SongQueue:
         except Exception as e:
           print(e)
       
-  async def pauseSong(self, bot, ctx):
+  async def pause_song(self, bot, ctx):
     if (bot.Trobotsko.VoiceClient.is_paused() == False and bot.Trobotsko.VoiceClient.is_playing()):
       try:
         bot.Trobotsko.VoiceClient.pause()
@@ -141,7 +141,7 @@ class SongQueue:
     else:
       await ctx.send(f"Bot has no song to pause.")
         
-  async def resumeSong(self, bot, ctx):
+  async def resume_song(self, bot, ctx):
     if (bot.Trobotsko.VoiceClient.is_paused()):
       try:
         bot.Trobotsko.VoiceClient.resume()
@@ -153,7 +153,7 @@ class SongQueue:
     else:
       await ctx.send(f"No song is paused.") 
       
-  async def shuffleSongs(self, bot, ctx):
+  async def shuffle_songs(self, bot, ctx):
     bot.Trobotsko.isShuffling = not bot.Trobotsko.isShuffling
     if (bot.Trobotsko.isShuffling):
       await ctx.send(f"Shuffling queue...")

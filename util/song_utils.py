@@ -1,14 +1,14 @@
 from yt_dlp import YoutubeDL
 from classes.Song import Song
 
-async def determineMessageType(songElement):
+async def determine_message_type(songElement):
   if (songElement.__contains__("https://www.youtube.com/") or songElement.__contains__("https://youtu.be/")): # dealing with an youtube URL
-    submittedSong = await fetchFromYoutubeURL(songElement)
+    submittedSong = await fetch_from_youtube_URL(songElement)
   else:
-    submittedSong = await getURLFromTitle(songElement)
+    submittedSong = await get_URL_from_title(songElement)
   return submittedSong
 
-async def getURLFromTitle(title):
+async def get_URL_from_title(title):
   with YoutubeDL({
     "quiet": True,
     "skip_download": True,
@@ -18,11 +18,11 @@ async def getURLFromTitle(title):
     try:
       search_result = ydl.extract_info(f"ytsearch1:{title}", download=False)
       if "entries" in search_result and search_result["entries"]:
-        return await fetchFromYoutubeURL(search_result["entries"][0]["webpage_url"])
+        return await fetch_from_youtube_URL(search_result["entries"][0]["webpage_url"])
     except Exception as e:
       print("Search failed: ", e)
 
-async def fetchFromYoutubeURL(url):
+async def fetch_from_youtube_URL(url):
   try:
     with YoutubeDL({
       "quiet": True,
