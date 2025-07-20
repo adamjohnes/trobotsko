@@ -9,7 +9,7 @@ class BotAPI:
     self.isConnected = False
     self.isRepeating = False
     self.isShuffling = False
-    self.VoiceClient = None 
+    self.VoiceClient = None
    
   def __str__(self):
     return f"Details:\nCurrent Channel: {self.currentChannel}\nQueue:\n{self.songList}\nis Connected?: {self.isConnected}\nis Playing?: {self.VoiceClient.is_playing()}\nVoiceClient: {self.VoiceClient}"

@@ -11,3 +11,9 @@ class Song:
   
   def __repr__(self):
     return self.__str__()
+  
+  def to_dict(self):
+    return {
+        "title": self.title,
+        "url": self.url
+    }
