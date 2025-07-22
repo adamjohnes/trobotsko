@@ -6,6 +6,8 @@ async def determine_message_type(songElement):
     submittedSong = await fetch_from_youtube_URL(songElement)
   else:
     submittedSong = await get_URL_from_title(songElement)
+  if (submittedSong == None):
+    await print(f"Could not find a suitable URL for the given title.")
   return submittedSong
 
 async def get_URL_from_title(title):
@@ -36,4 +38,4 @@ async def fetch_from_youtube_URL(url):
   except Exception as e:
     print("Error extracting title:", e)
     return
-  return Song(video_info.get("title", "Unknown Title"), f"<{url}>", video_info["url"])
+  return Song(video_info.get("title", "Unknown Title"), f"{url}", video_info["url"])

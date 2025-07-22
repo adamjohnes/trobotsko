@@ -28,28 +28,37 @@ def get_conn(pool):
       self.conn.close()
   return _ConnCtx()
 
-
-def ensure_user(pool, user):
+def perform_query(pool, message, query, values):
   with pool.get_connection() as conn:
+    print(message)
     cur = conn.cursor()
     cur.execute(
-      """
-      INSERT IGNORE INTO users (id, username, rsn, created_at)
-      VALUES (%s, %s, %s, %s)
-      """,
-      (user.id, user.name, None, datetime.now())
+      query,
+      (values)
     )
     conn.commit()
+        
+# def ensure_user(pool, user):
+#   with pool.get_connection() as conn:
+#     cur = conn.cursor()
+#     cur.execute(
+#       """
+#       INSERT IGNORE INTO users (id, username, rsn, created_at)
+#       VALUES (%s, %s, %s, %s)
+#       """,
+#       (user.id, user.name, None, datetime.now())
+#     )
+#     conn.commit()
 
-def update_rsn(pool, user, rsn):
-  with pool.get_connection() as conn:
-    print(f"[DB] Updating RSN for {user.id} → {rsn}")
-    cur = conn.cursor()
-    cur.execute(
-      "UPDATE users SET rsn=%s WHERE id=%s",
-      (rsn, user.id)
-    )
-    conn.commit()
+# def update_rsn(pool, user, rsn):
+#   with pool.get_connection() as conn:
+#     print(f"[DB] Updating RSN for {user.id} → {rsn}")
+#     cur = conn.cursor()
+#     cur.execute(
+#       "UPDATE users SET rsn=%s WHERE id=%s",
+#       (rsn, user.id)
+#     )
+#     conn.commit()
     
 def create_playlist_db(pool, user, playlist):
   with pool.get_connection() as conn:
@@ -74,10 +83,18 @@ def select_playlist_db(pool, user):
       """,
       (user.id,)
     )
+    
     results = cur.fetchall()
-    results = [f"{itemA}: {itemB}" for itemA, itemB in results]
-    results = "\n".join(results)
-    return results
+    # Build a dictionary where keys = playlist names, values = list of songs
+    playlist_dict = {}
+
+    for name, songs in results:
+      if songs:
+        playlist_dict[name.lower()] = json.loads(songs)
+      else:
+        playlist_dict[name.lower()] = []  # Handle playlists with no songs
+
+    return playlist_dict
   
 def insert_song_db(pool, user, playlist, song):
   with pool.get_connection() as conn:
@@ -105,7 +122,7 @@ def insert_song_db(pool, user, playlist, song):
       existing_songs = []
 
     # Append new song
-    existing_songs.append(str(song))
+    existing_songs.append(song)
 
     # Update the songs column
     cur.execute(
@@ -117,3 +134,47 @@ def insert_song_db(pool, user, playlist, song):
       (json.dumps(existing_songs), user.id, playlist)
     )
     conn.commit()
+    
+def remove_song_db(pool, user, playlist, song):
+  with pool.get_connection() as conn:
+    print(f"[DB] Attempting to remove {song} from {playlist} for: {user.id}")
+    cur = conn.cursor()
+
+    # First, get the current song list
+    cur.execute(
+      "SELECT songs FROM playlists WHERE user_id=%s AND name=%s",
+      (user.id, playlist)
+    )
+    results = cur.fetchone()
+
+    if results is None:
+      print(f"No playlist found for user {user.id} and playlist '{playlist}'")
+      return
+
+    try:
+      if results[0]:
+        existing_songs = json.loads(results[0])
+      else:
+        print(f"No songs exist in playlist: {playlist}.")
+        return
+    except Exception as e:
+      print(f"Error parsing songs: {e}")
+
+    # Remove song
+    try:
+      existing_songs.remove(song)
+    except Exception as e:
+      print(f"Could not find song: {e}")
+      return False
+
+    # Update the songs column
+    cur.execute(
+      """
+      UPDATE playlists
+      SET songs=%s
+      WHERE user_id=%s AND name=%s
+      """,
+      (json.dumps(existing_songs), user.id, playlist)
+    )
+    conn.commit()
+    return True

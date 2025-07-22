@@ -5,11 +5,11 @@ from cogs.moving import connect_voice
 
 songs = ["https://www.youtube.com/watch?v=xKCek6_dB0M", "https://www.youtube.com/watch?v=a81eP2E8MEQ", "https://www.youtube.com/watch?v=_ILsdcs__ME", "Right above it", "the duck song", "Ariana Grande positions"]
 
-class Song(commands.Cog):
+class Music(commands.Cog):
   def __init__(self, bot):
     self.bot = bot
 
-  @commands.command(name="play", help="submits a song to the queue, also plays song if none is playing")
+  @commands.command(name="add", help="submits a song to the queue, also plays song if none is playing")
   async def submit_song(self, ctx, *, songElement: str):
     # if (self.bot.Trobotsko.VoiceClient == None):
     #   await ctx.send("I need to join a voice channel first, use <join-voice")
@@ -21,13 +21,23 @@ class Song(commands.Cog):
     submittedSong = await determine_message_type(songElement)
     try:
       self.bot.Trobotsko.songList.push_song(submittedSong)
-      await ctx.send(f"Song added: {submittedSong}")
+      await ctx.send(f"```Song added: {submittedSong}```")
       if (self.bot.Trobotsko.VoiceClient.is_playing() == False):
         await self.bot.Trobotsko.songList.play_songs(self.bot, ctx)
     except Exception as e:
       await ctx.send(f"Error adding song to queue.")
       print(e)
-      
+  
+  @commands.command(name="play", help="plays song from queue if none is playing")
+  async def play_song(self, ctx):
+    if (self.bot.Trobotsko.VoiceClient == None):
+      await ctx.send("I need to join a voice channel first, use <join-voice")
+      return
+    if not ctx.author.voice: # User is not connected to a voice channel
+      await ctx.send(f"{ctx.author} is not connected to a voice channel.")
+    if (self.bot.Trobotsko.VoiceClient.is_playing() == False):
+      await self.bot.Trobotsko.songList.play_songs(self.bot, ctx)
+  
   @commands.command(name="test", help="creates test song list")
   async def input_songs(self, ctx):
     for song in songs:
@@ -59,9 +69,9 @@ class Song(commands.Cog):
   
   @commands.command(name="see", help="see a list of the songs in the queue")
   async def see_songs(self, ctx):
-    await ctx.send(f"\n{self.bot.Trobotsko.songList}")
+    await ctx.send(f"\n```{self.bot.Trobotsko.songList}```")
       
-  @commands.command(name="remove", help="remove a song in the queue\nFormat: <remove [Youtube URL] OR <remove [song title] OR <remove [position]")
+  @commands.command(name="remove", help="remove a song in the queue")
   async def remove_song(self, ctx, songElement):
     try:
       await self.bot.Trobotsko.songList.remove_song(ctx, songElement)
@@ -86,4 +96,4 @@ class Song(commands.Cog):
     await self.bot.Trobotsko.songList.shuffle_songs(self.bot, ctx)
 
 async def setup(bot):
-  await bot.add_cog(Song(bot))
+  await bot.add_cog(Music(bot))

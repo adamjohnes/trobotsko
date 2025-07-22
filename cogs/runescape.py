@@ -10,10 +10,11 @@ class Runescape(commands.Cog):
     loop = ctx.bot.loop
     await loop.run_in_executor(
       None,
-      update_rsn,
+      perform_query,
       self.bot.db_pool,
-      ctx.author,
-      rsn.strip()
+      f"[DB] Updating RSN for {ctx.author.id} → {rsn}",
+      "UPDATE users SET rsn=%s WHERE id=%s",
+      (rsn, ctx.author.id)
     )
     await ctx.send(f"Your RSN has been updated to **{rsn}**!")
 

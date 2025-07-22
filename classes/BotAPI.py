@@ -12,7 +12,7 @@ class BotAPI:
     self.VoiceClient = None
    
   def __str__(self):
-    return f"Details:\nCurrent Channel: {self.currentChannel}\nQueue:\n{self.songList}\nis Connected?: {self.isConnected}\nis Playing?: {self.VoiceClient.is_playing()}\nVoiceClient: {self.VoiceClient}"
+    return f"```Details:\nCurrent Channel: {self.currentChannel}\nQueue:\n{self.songList}\nis Connected?: {self.isConnected}\nVoiceClient: {self.VoiceClient}```"
   
   def set_channel(self, channel:str):
     self.channel = channel

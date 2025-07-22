@@ -20,7 +20,7 @@ class SongQueue:
     return len(self.queue)
   
   def peek(self):
-    if self.getSize() > 0:
+    if self.get_size() > 0:
       return self.queue[0]
     else:
       raise LengthEqualsZeroError("The length of the queue is 0.")
@@ -73,7 +73,7 @@ class SongQueue:
 
   def randomize_order(self):
     random.shuffle(self.queue)
-    return (f"Order has been randomized... new queue:\n{self.queue}")
+    return (f"```Order has been randomized... new queue:\n{self.queue}```")
   
   async def play_songs(self, bot, ctx):
     if (self.isPlayingLoopActive):
@@ -95,7 +95,7 @@ class SongQueue:
           continue
 
         # Now it’s safe to quit if *nothing* is left
-        if bot.Trobotsko.songList.getSize() == 0:
+        if bot.Trobotsko.songList.get_size() == 0:
           break
 
         # Otherwise, start the next track…
@@ -105,8 +105,8 @@ class SongQueue:
           bot.Trobotsko.songList.queue.pop(randomNumber)
         else:
           self.current = bot.Trobotsko.songList.peek()
-          bot.Trobotsko.songList.popSong()
-        await ctx.send(f"Playing: {self.current}")
+          bot.Trobotsko.songList.pop_song()
+        await ctx.send(f"```Playing: {self.current}```")
         source = discord.FFmpegPCMAudio(self.current.playableAudio, options='-vn')
         bot.Trobotsko.VoiceClient.play(source)
         self.isPlayingLoopActive = True

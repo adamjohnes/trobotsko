@@ -5,8 +5,9 @@ import os
 from classes.BotAPI import BotAPI
 import logging
 from datetime import date
-from util.db import create_pool, get_conn, ensure_user
+from util.db import create_pool, get_conn, perform_query
 import asyncio
+from datetime import datetime
 
 load_dotenv()
 
@@ -59,9 +60,14 @@ async def on_message(message):
     try:
         await loop.run_in_executor(
             None,
-            ensure_user,
+            perform_query,
             bot.db_pool,
-            message.author
+            "",
+            """
+            INSERT IGNORE INTO users (id, username, rsn, created_at)
+            VALUES (%s, %s, %s, %s)
+            """,
+            (message.author.id, message.author.name, None, datetime.now())
         )
     except Exception as e:
         logging.error(f"Error in ensure_user: {e}")
