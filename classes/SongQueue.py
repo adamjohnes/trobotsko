@@ -2,6 +2,7 @@ from util.error_utils import LengthEqualsZeroError
 import random
 import asyncio
 import discord
+from util.song_utils import get_playable_audio_url
 
 class SongQueue:
   def __init__(self):
@@ -107,7 +108,8 @@ class SongQueue:
           self.current = bot.Trobotsko.songList.peek()
           bot.Trobotsko.songList.pop_song()
         await ctx.send(f"```Playing: {self.current}```")
-        source = discord.FFmpegPCMAudio(self.current.playableAudio, options='-vn')
+        audio_url = get_playable_audio_url(self.current.url)
+        source = discord.FFmpegPCMAudio(audio_url, options='-vn')
         bot.Trobotsko.VoiceClient.play(source)
         self.isPlayingLoopActive = True
     finally:

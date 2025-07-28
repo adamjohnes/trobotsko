@@ -1,6 +1,15 @@
 from yt_dlp import YoutubeDL
 from classes.Song import Song
 
+def get_playable_audio_url(youtube_url):
+    with YoutubeDL({
+        "quiet": True,
+        "skip_download": True,
+        "format": "bestaudio/best"
+    }) as ydl:
+        info = ydl.extract_info(youtube_url, download=False)
+        return info["url"]
+
 async def determine_message_type(songElement):
   if (songElement.__contains__("https://www.youtube.com/") or songElement.__contains__("https://youtu.be/")): # dealing with an youtube URL
     submittedSong = await fetch_from_youtube_URL(songElement)
