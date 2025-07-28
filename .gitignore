@@ -16,3 +16,6 @@ Thumbs.db
 
 # ignore logs
 logs/
+
+# ignore user data [files]
+user_storage/
