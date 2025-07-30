@@ -3,8 +3,10 @@ from dotenv import load_dotenv
 import os
 from datetime import datetime
 import json
+from logs.logging import load_logs_config
 
 load_dotenv()
+logging = load_logs_config()
 
 def create_pool():
   return pooling.MySQLConnectionPool(
@@ -178,3 +180,16 @@ def remove_song_db(pool, user, playlist, song):
     )
     conn.commit()
     return True
+  
+def insert_file_db(pool, user, fileElements):
+  with pool.get_connection() as conn:
+    logging.info(f"[DB] Creating file metadata for {user.id} → {fileElements}")
+    cur = conn.cursor()
+    cur.execute(
+      """
+      INSERT IGNORE INTO userfiles (user_id, filename, name, created_at)
+      VALUES (%s, %s, %s, %s)
+      """,
+      (user.id, fileElements["fileName"], fileElements["name"], datetime.now())
+    )
+    conn.commit()
