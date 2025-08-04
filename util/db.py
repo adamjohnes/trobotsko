@@ -187,9 +187,42 @@ def insert_file_db(pool, user, fileElements):
     cur = conn.cursor()
     cur.execute(
       """
-      INSERT IGNORE INTO userfiles (user_id, filename, name, created_at)
-      VALUES (%s, %s, %s, %s)
+      INSERT IGNORE INTO userfiles (user_id, filename, accessname, localpath, created_at)
+      VALUES (%s, %s, %s, %s, %s)
       """,
-      (user.id, fileElements["fileName"], fileElements["name"], datetime.now())
+      (user.id, fileElements["fileName"], fileElements["accessName"], fileElements["savedPath"], datetime.now())
+    )
+    conn.commit()
+
+def see_file_db(pool, user):
+  with pool.get_connection() as conn:
+    logging.info(f"[DB] Fetching file metadata for {user.id}")
+    cur = conn.cursor()
+    cur.execute(
+      """
+      SELECT filename, accessname, localpath, created_at FROM userfiles WHERE user_id=%s
+      """,
+      (user.id,)
+    )
+    results = cur.fetchall()
+    filesMetadata = []
+    for filename, accessname, localpath, created_at in results:
+      filesMetadata.append({
+        "filename": filename,
+        "accessname": accessname,
+        "localpath": localpath,
+        "created_at": str(created_at)
+      })
+    return filesMetadata
+  
+def delete_file_db(pool, user, accessName):
+  with pool.get_connection() as conn:
+    logging.info(f"[DB] Attempting to delete file {accessName} for {user.id}")
+    cur = conn.cursor()
+    cur.execute(
+      """
+      DELETE FROM userfiles WHERE user_id=%s and accessname=%s
+      """,
+      (user.id, accessName)
     )
     conn.commit()
