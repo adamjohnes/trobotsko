@@ -22,9 +22,11 @@ class Files(commands.Cog):
     
     if not ctx.message.attachments:
       await ctx.send(f"❌ Please provide a file")
+      return
     
     if (await is_duplicate_access_name(self.bot, ctx, userAccessName)):
       await ctx.send(f"A file with access name: {userAccessName} already exists. Name it something else.")
+      return
     
     directory = f".\\user_storage\\{ctx.message.author.id}\\"
     os.makedirs(directory, exist_ok=True)
