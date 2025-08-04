@@ -1,6 +1,19 @@
-v1.0.1 Discord Bot: Trobotsko
+v1.2.0 Discord Bot: Trobotsko
 
-v1.0.1 Updates:
+v1.2.0 Updates:
+
+Trobotsko can now store, retrieve and delete files! See the following commands below about what is possible:
+
+- Files
+  - <delete-file deletes a file from both local storage and the remote db
+  - <get-file specifically returns a files contents
+  - <see-files displays information about all the files a particular user has stored
+  - <store-file allows a user to store file(s) for later retrieval
+
+- Minor tweaks / updates:
+  - Fixed a bug where the song would suddenly stop playing due to improper streaming links in yt-dlp
+
+v1.1.0 Updates:
 
 Trobotsko can now play music! See the following commands below about what is possible:
 
