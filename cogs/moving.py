@@ -43,7 +43,7 @@ async def connect_voice(bot, ctx):
       await ctx.send("There was an issue attempting to leave the channel...")
       
   try: 
-    bot.Trobotsko.set_bot_attributes(channel, True, bot.Trobotsko.isRepeating, await channel.connect(reconnect=False))
+    bot.Trobotsko.set_bot_attributes(channel, True, bot.Trobotsko.isRepeating, await channel.connect(reconnect=True))
   except discord.GatewayNotFound as e:
     await ctx.send(f"GatewayNotFound: {e}")
   except discord.ConnectionClosed as e:
